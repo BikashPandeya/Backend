@@ -14,7 +14,7 @@ fs.writeFile("harry2.txt"  , "Harry is a good boy2" , () => {
         
     })
     
-})   //Here as js is async so "Ending" is print first and thn "done" is printed after the fuile is made and have the data "Harry is a good boy" .
+})   //Here as js is async so "Ending" is print first and then "done" is printed after the file is made and have the data "Harry is a good boy" .
 
 fs.appendFile("harry.txt" , "Bikashhhhhhhhhhhhhhh " , (e,d) => {   //here d is data in the harry.txt before appending 
     console.log(e,d);
