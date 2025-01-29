@@ -53,7 +53,7 @@ fs.readdir(folderPath, (err, files) => {
   }
 
   console.log('Files:', files);
-
+  
   // Iterate through each file in the folder
   files.forEach((file) => {
     // Get the full path of the file
