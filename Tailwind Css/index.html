@@ -1,0 +1,36 @@
+<!-- Here I have made bulid shortcut for running tailwind css which can be simply run by "npm install build" which will make output.css in src which is due to contents in tailwind.config.js -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/output.css">
+</head>
+<body>
+  <nav class="bg-purple-700 text-white flex md:justify-between flex-col md:flex-row min-h-10 items-center" >
+    <div class="logo mx-auto md:mx-0">
+      CodeWithHarry
+    </div>
+    <ul class="flex space-x-10 justify-center md:justify-normal">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact Us</li>
+    </ul>
+  </nav>
+
+
+  <main>
+    <div class="container bg-red-400 sm:bg-purple-500">
+      <!-- If width greater than sm i.e 384px , it applies purple colour -->
+      Heyy Man Whats Going on
+    </div>
+  </main>
+
+
+  <footer>
+
+  </footer>
+</body>
+</html>
