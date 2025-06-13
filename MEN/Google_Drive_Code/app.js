@@ -1,10 +1,13 @@
 const express = require('express');
 const userRouter = require('./routes/user.routes');
+<<<<<<< HEAD
 const dotenv = require('dotenv')
 dotenv.config();
 const connectToDB = require('./config/db');
 connectToDB();
 
+=======
+>>>>>>> c51dd831058e4ded7127ebb67ef64954deb18930
 
 const app = express();
 
