@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+  </head>
+  <body>
+    <main
+      class="flex flex-col items-center justify-center min-h-screen bg-[#1a1f3c] relative"
+    >
+      <button
+        class="absolute top-4 left-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded focus:outline-none focus:shadow-outline px-4 py-2 z-[60] transition-all duration-300"
+        onclick="showPopup()"
+        id="uploadButton"
+      >
+        Upload File
+      </button>
+      <div
+        class="popup hidden fixed top-0 left-0 w-full h-full bg-[#1a1f3c]/80 backdrop-blur-xl flex items-center justify-center z-50 flex-col"
+      >
+        <button
+          onclick="hidePopup()"
+          class="absolute top-6 right-6 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center focus:outline-none focus:shadow-outline transition-all duration-300 shadow-lg"
+        >
+          <i class="ri-close-circle-fill text-2xl"></i>
+        </button>
+        <form action="/upload-file" method="post" enctype="multipart/form-data">
+          <div
+            class="flex items-center justify-center w-96 max-w-md mx-auto mt-10 bg-[#1a1f3c] rounded-lg shadow-lg p-6 border border-blue-500/20"
+          >
+            <label
+              for="dropzone-file"
+              class="flex flex-col items-center justify-center w-full h-64 border-2 border-blue-500/30 border-dashed rounded-lg cursor-pointer bg-[#1a1f3c] hover:bg-[#1a1f3c]/80 transition-colors duration-300"
+            >
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i class="ri-upload-cloud-2-line text-4xl mb-4 text-blue-400"></i>
+                <p class="mb-2 text-sm text-blue-300">
+                  <span class="font-semibold">Click to upload</span> or drag and
+                  drop
+                </p>
+                <p class="text-xs text-blue-400">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                </p>
+              </div>
+              <input
+                id="dropzone-file"
+                type="file"
+                class="hidden"
+                name="file"
+              />
+            </label>
+          </div>
+        </form>
+        <button
+          class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Upload File
+        </button>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script>
+      function showPopup() {
+        document.querySelector(".popup").style.display = "flex";
+        document.getElementById("uploadButton").classList.add("blur-sm");
+      }
+
+      function hidePopup() {
+        document.querySelector(".popup").style.display = "none";
+        document.getElementById("uploadButton").classList.remove("blur-sm");
+      }
+    </script>
+  </body>
+</html>
