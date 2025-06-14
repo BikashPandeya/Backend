@@ -1,10 +1,8 @@
 const mongoose = require('mongoose')
 
 const fileSchema = new mongoose.Schema({
-    path : {
-        type : String,
-        required :[  true , "Path is required"]
-    },
+    secure_url: { type: String, required: [true , "Secure URL is required"] },
+    public_id: { type: String, required: [true , "Public ID is required"] },
     originalName: {
         type: String,
         required: [true, "Original name is required"]

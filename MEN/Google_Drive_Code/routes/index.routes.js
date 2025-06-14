@@ -12,27 +12,32 @@ const uploadedFiles = [];
 const fileModel = require("../models/files.models");
 
 
-router.get("/home", authMiddleware  , (req, res) => {
-  res.render("home", { uploadedFiles });
+router.get("/home", authMiddleware  , async(req, res) => {
+    const userFiles = await fileModel.find({ user: req.user.userId })
+    console.log(userFiles);
+    res.render("home", { uploadedFiles });
 });
   
 
-router.post("/upload-file", upload.single("file"), async (req, res) => {
+router.post("/upload-file",authMiddleware ,  upload.single("file"), async (req, res) => {
     try {
       const fileBuffer = req.file.buffer;
-      const newFile = await fileModel.create({
-        path : req.file.path,
-        originalName: req.file.originalname,
-        user: req.user._id // Assuming req.user is set after authentication middleware
-      })
+     
       const stream = cloudinary.uploader.upload_stream(
         { resource_type: "auto" },
-        (error, result) => {
+        async (error, result) => {
           if (error) {
             console.error("Upload error:", error);
             return res.status(500).send("Upload Failed");
           }
   
+          const newFile = await fileModel.create({
+            secure_url: result.secure_url,
+            public_id: result.public_id,
+            originalName: req.file.originalname,
+            user: req.user.userId,
+          });
+          
           uploadedFiles.push(result.secure_url);
           return res.redirect("/home");
         }
@@ -43,6 +48,7 @@ router.post("/upload-file", upload.single("file"), async (req, res) => {
       console.error(err);
       res.status(500).send("Server Error");
     }
+
   });
 
 module.exports = router
