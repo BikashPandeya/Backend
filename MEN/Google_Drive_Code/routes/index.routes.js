@@ -15,7 +15,7 @@ const fileModel = require("../models/files.models");
 router.get("/home", authMiddleware  , async(req, res) => {
     const userFiles = await fileModel.find({ user: req.user.userId })
     console.log(userFiles);
-    res.render("home", { uploadedFiles });
+    res.render("home", { uploadedFiles , files : userFiles });
 });
   
 
@@ -50,5 +50,24 @@ router.post("/upload-file",authMiddleware ,  upload.single("file"), async (req, 
     }
 
   });
+
+router.get("/download/:secure_url", authMiddleware, async (req, res) => {
+  try {
+    const file = await fileModel.findOne({ secure_url: req.params.publicId, user: req.user.userId });
+    if (!file) {
+      return res.status(404).send("File not found");
+    }
+    
+    // Set headers to force download
+    res.setHeader('Content-Disposition', `attachment; filename="${file.originalName}"`);
+    res.setHeader('Content-Type', 'application/octet-stream');
+    
+    // Redirect to Cloudinary URL with download parameter
+    res.redirect(`${file.secure_url}?download=true`);
+  } catch (error) {
+    console.error("Download error:", error);
+    res.status(500).send("Download failed");
+  }
+});
 
 module.exports = router
