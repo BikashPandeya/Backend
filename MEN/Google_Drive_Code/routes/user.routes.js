@@ -51,10 +51,8 @@ router.post(
         username: newUser.username
       };
       
-      res.status(201).json({
-        message: "User registered successfully",
-        user: userResponse
-      });
+
+      res.redirect('/user/login');
     } catch (error) {
       console.error("Registration error:", error);
       res.status(500).json({
