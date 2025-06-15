@@ -96,7 +96,7 @@ router.post('/login' ,
         const token = jwt.sign({userId : user._id , email : user.email , username : user.username} , process.env.JWT_SECRET );
         
         res.cookie('token' , token)
-        res.send("Logged In Successfully")
+        res.redirect('/home');
     }
 );
 

@@ -94,12 +94,34 @@
       </div>
 
       <div class="files flex flex-col gap-2 w-100" >
-        <% files.forEach((file) => { %>
-          <div class="p-2 rounded-md bg-gray-300  flex items-center justify-between">
-            <h1><%= file.originalName %></h1>
-            <a href="/download/<%= file.public_id %>"><i class="ri-download-cloud-line text-2xl"></i></a>
-          </div>
-        <% }) %>
+        <div class="files flex flex-col gap-2 w-full">
+          <% files.forEach((file) => { %>
+            <div class="p-4 rounded-md bg-gray-300 flex flex-col gap-2">
+              <h1 class="text-blue-900 font-semibold"><%= file.originalName %></h1>
+        
+              <!-- Small preview block -->
+              <% if (file.resource_type === "image") { %>
+                <img src="<%= file.secure_url %>" alt="preview" class="w-32 h-32 object-cover rounded-md border border-gray-400" />
+              <% } else if (file.resource_type === "video") { %>
+                <video src="<%= file.secure_url %>" class="w-32 h-32 rounded-md border border-gray-400" muted autoplay loop></video>
+              <% } else if (file.format === "pdf") { %>
+                <iframe src="<%= file.secure_url %>" class="w-32 h-32 rounded-md border border-gray-400"></iframe>
+              <% } else { %>
+                <div class="w-32 h-32 flex items-center justify-center bg-gray-200 text-sm text-gray-700 rounded-md border border-gray-400">
+                  No Preview
+                </div>
+              <% } %>
+        
+              <!-- Download button (unchanged) -->
+              <div class="flex justify-end">
+                <a href="/download/<%= file.public_id %>">
+                  <i class="ri-download-cloud-line text-2xl text-blue-800 hover:text-blue-900"></i>
+                </a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
