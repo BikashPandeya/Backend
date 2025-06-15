@@ -14,7 +14,7 @@ const fileModel = require("../models/files.models");
 
 router.get("/home", authMiddleware  , async(req, res) => {
     const userFiles = await fileModel.find({ user: req.user.userId })
-    console.log(userFiles);
+    // console.log(userFiles);
     res.render("home", { uploadedFiles , files : userFiles });
 });
   
@@ -33,6 +33,7 @@ router.post("/upload-file",authMiddleware ,  upload.single("file"), async (req, 
   
           const newFile = await fileModel.create({
             secure_url: result.secure_url,
+            resource_type: result.resource_type,
             public_id: result.public_id,
             originalName: req.file.originalname,
             user: req.user.userId,
