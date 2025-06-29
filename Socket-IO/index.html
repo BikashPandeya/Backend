@@ -7,5 +7,27 @@
 </head>
 <body>
     <h1>Socket IO</h1>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module">
+        const socket = io()
+
+        socket.on('connect' , () => {
+            console.log("Connected to the client ✅")
+            //Disconnect from server after 5 seconds
+            /* setTimeout(() => {
+                socket.disconnect()
+            } , 5000)*/
+             socket.on("real-time-message" , (message) => {
+                console.log(message)
+             })
+
+             socket.emit('new message' , "Client is sending this data to the server")
+        })
+        socket.on('disconnect' , () => {
+            console.log("Disconnected from Server from Client-Side ❌")
+        })
+
+
+    </script>
 </body>
 </html>
