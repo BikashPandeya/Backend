@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Chat App</title>
     <style>
-              #messages {
+     #messages {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -24,14 +24,16 @@
 </head>
 <body>
     <ul id="messages">
-        <form id="form">
-            <input id="input" type="text" autocomplete="off" >
-            <button>Send</button>
-        </form>
     </ul>
+        <form id="form">
+            <input type="text" placeholder="Enter the name..." autocomplete="off" id="name" ><br><br>
+            <input id="input" placeholder="Enter the msg..." autocomplete="off"  >
+            <button type="submit">Send</button>
+        </form>
 
     <script>
         //Selecting DOM Elements
+        const name = document.getElementById('name')
         const form = document.getElementById('form')
         const input = document.getElementById('input')
 
@@ -42,9 +44,9 @@
         //Attach Event Listenier To The Form
         form.addEventListener("submit" , e => {
             e.preventDefault()
-            if(input.value){
+            if(input.value && name.value){
                 //Providing Data to the server
-                socket.emit("chat-message" , input.value)
+                socket.emit("chat-message" ,name.value + " : " + input.value)
             }
         })
 
