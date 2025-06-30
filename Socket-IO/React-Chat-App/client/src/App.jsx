@@ -2,27 +2,28 @@
 import { useState , useEffect } from "react"
 import io from 'socket.io-client'
 
-const socket = io('https://localhost:3000')
+const socket = io('http://localhost:3000')
 
 const App = () => {
   const [messages, setmessages] = useState([])
   const [messageInput, setmessageInput] = useState('')
 
   useEffect(() => {
+    
     socket.on('message' , (message) => {
-      setmessageInput([...messages , message])
+      setmessages([...messages , message])
     })
-
     return () => {
       socket.off('message')
     }
   }, [messages])
 
   const handleSubmit = (e) => {
-    e.preventDefault
-    if(messageInput.trim() != ''){
+    e.preventDefault()
+    if(messageInput.trim() !== ''){
 
       socket.emit("message" , messageInput)
+      setmessageInput("")
     }
   }
   
@@ -36,7 +37,7 @@ const App = () => {
 
       <section>
         {messages.map((message , index) => {
-          <p>{message}</p>
+          return <p key={index}>{message}</p>
         })}
       </section>
     </div>
