@@ -1,0 +1,118 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore all .env files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore npm debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore coverage directory
+coverage
+*.lcov
+
+# Ignore nyc test coverage
+.nyc_output
+
+# Ignore build output
+build
+
+# Ignore runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Ignore TypeScript cache
+*.tsbuildinfo
+
+# Ignore optional npm cache directory
+.npm
+
+# Ignore optional eslint cache
+.eslintcache
+
+# Ignore optional stylelint cache
+.stylelintcache
+
+# Ignore optional REPL history
+.node_repl_history
+
+# Ignore output of 'npm pack'
+*.tgz
+
+# Ignore Yarn Integrity file
+.yarn-integrity
+
+# Ignore parcel-bundler cache
+.cache
+.parcel-cache
+
+# Ignore Next.js build output
+.next
+out
+
+# Ignore Nuxt.js build / generate output
+.nuxt
+dist
+
+# Ignore Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# Ignore vuepress build output
+.vuepress/dist
+
+# Ignore vuepress v2.x temp and cache directory
+.temp
+.cache
+
+# Ignore Sveltekit cache directory
+.svelte-kit/
+
+# Ignore vitepress build output
+**/.vitepress/dist
+
+# Ignore vitepress cache directory
+**/.vitepress/cache
+
+# Ignore Docusaurus cache and generated files
+.docusaurus
+
+# Ignore Serverless directories
+.serverless/
+
+# Ignore FuseBox cache
+.fusebox/
+
+# Ignore DynamoDB Local files
+.dynamodb/
+
+# Ignore Firebase cache directory
+.firebase/
+
+# Ignore TernJS port file
+.tern-port
+
+# Ignore Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Ignore yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Ignore Vite logs files
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
