@@ -29,7 +29,7 @@ const App = () => {
   
   return (
     <div>
-      <h1>Simple Chat App</h1>
+      <h1>Simple Chat App using React js</h1>
       <form action="">
         <input type="text" value={messageInput} placeholder="Enter a msg..." onChange={(e) => {setmessageInput(e.target.value)}}/>
         <button onClick={handleSubmit}>Send</button>
